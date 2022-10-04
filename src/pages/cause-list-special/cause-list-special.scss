@@ -1,0 +1,45 @@
+page-cause-list-special {
+.headerColumn{
+    background-color : #3A9EFC;
+     margin: 1px;
+     height: 4% fixed;
+    color: #ffffff !important;
+     padding:2% !important;
+     font-size: 100%;
+}
+ion-col{
+    background-color: #ffffff;
+    margin: 1px;
+    height: 4% fixed;
+    padding:2%;
+    font-size: 80%;
+}
+.seperator{
+    margin : 2%;
+}
+
+ .bgColor{
+     background-image: repeating-linear-gradient(to bottom,rgb(232, 244, 252) 0%,rgb(230, 244, 252) 39.7%,rgb(228, 242, 251) 99.1%);
+ }
+ .backColor{
+     background-image: repeating-linear-gradient(to bottom,rgb(229, 243, 252) 0%,rgb(227, 242, 251) 39.7%,rgb(226, 241, 251) 99.1%);
+ }
+ .button{
+      background-color : #3A9EFC;
+ }
+ .fontColor{
+    color: black  !important;
+}
+
+.bar-button-menutoggle .button-inner{
+border : none;
+}
+.datetime-text:empty:not(:focus):before{
+    content: "Date of Hearing";
+    color : gray;
+}
+.datetime-text{
+-webkit-flex: none !important;
+    flex : none !important;
+}
+}

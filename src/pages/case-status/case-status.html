@@ -1,0 +1,139 @@
+<!--
+  Generated template for the CaseStatus page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Case Status - Search Your Case</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #caseStatusContent class="adjectLabel">
+    <ion-list no-lines [hidden]="isFormShow">
+        <form #form="ngForm" [formGroup]="casesForm" (ngSubmit)="caseSubmit(form.value)" novalidate>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+            <!--Bench-->
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-select name="bench" formControlName="bench" [(ngModel)]="default.id" class="placeholder-font" placeholder="* Bench" interface="popover">
+                                <ion-option *ngFor="let b of benchList" value="{{b.id}}">{{b.bench}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-select name="appealType" formControlName="appealType" class="placeholder-font" [(ngModel)]="defaultAppeal.id" placeholder="* Appeal Type" interface="popover">
+                                <ion-option *ngFor="let a of appealList" value="{{a.id}}">{{a.appealType}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-input type="number" placeholder="Appeal Number" class="placeholder-font" formControlName="appealNumber"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-select name="filingYear" formControlName="filingYear" class="placeholder-font" [(ngModel)]="defaultYear.year" placeholder="Filling Year" interface="popover">
+                                <ion-option *ngFor="let y of yearList" value="{{y.year}}">{{y.year}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 class="align">
+                        <ion-item class="custom-border">
+                            <!-- <ion-input type="text" placeholder="Filed on" formControlName="filedOn" name="filedOn"></ion-input> -->
+                            <!-- <ion-datetime placeholder="Filed on" class="datetime-text placeholder-font" displayFormat="DD MMM YYYY" formControlName="filedOn"></ion-datetime> -->
+                        <input type="text" onfocus="(this.type='date')" id="filedOn" onblur="(this.type='text')" style="margin: 0px !important; width: 100%; padding-left: 10%;border: 1px solid #a4d7e4; padding-top: 1%; padding-bottom: 1%; font-size: 0.8em; height: 29px;-webkit-appearance: none !important;"
+                                name="Filed on" placeholder="Filed on">
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6 class="align">
+                        <ion-item class="custom-border">
+                            <ion-input type="text" placeholder="Assessee Name" class="placeholder-font" formControlName="assesseeName"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <!-- <button ion-button (click)="picker()">click</button> -->
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 class="button-grp align"><button ion-button class="submit-bttn-left" [disabled]="validateForm(form.value.bench, form.value.appealType)" (click)="checkConnection(form.value)">Search</button></ion-col>
+                    <ion-col col-6 class="button-grp align"><button ion-button class="submit-bttn-right" (click)="resetForm(form.value.bench, form.value.appealType)" [disabled]="casesForm.pristine">Reset</button></ion-col>
+                </ion-row>
+            </ion-grid>
+            <!-- <ion-col col-6><button ion-button class="no-border" [disabled]="validateForm(form.value.bench, form.value.appealType)" (click)="checkConnection(form.value)" >Search</button></ion-col>
+                    <ion-col col-6><button ion-button class="no-border">Reset</button></ion-col> -->
+        </form>
+    </ion-list>
+    <!--Grid to show Search Data-->
+    <!-- 
+    <div *ngIf="apiErr">
+        <ion-card>
+            <ion-card-content><span><ion-icon name="alert" class="errIcon"></ion-icon></span><span [innerHtml]="msg.svcFailedMsg" class="errMsg">Service Problem</span> </ion-card-content>
+        </ion-card>
+    </div> -->
+    <service-info [isShow]="apiErr" [msg]="msg.svcFailedMsg" whichIcon="alert" iconColor="red">
+
+    </service-info>
+    <div *ngIf="!apiErr">
+        <div padding [hidden]=!displayGrid>
+            <h4>Showing Result For</h4>
+            <p class="summary"><span *ngIf="obj != null">Bench: {{obj.bench}}</span><span *ngIf="appeal != null">, Appeal Type: {{appeal.appealType}}</span><span *ngIf="summary != null">, Appeal Number: {{summary.appealNumber}}</span><span *ngIf="summary != null">, Filling Year: {{summary.filingYear}}</span>
+                <span *ngIf="summary != null">, Filed on: {{summary.filedOn}}</span>
+                <span *ngIf="summary != null">, Assessee Name: {{summary.assesseeName}}</span>
+            </p>
+        </div>
+        <ion-grid [hidden]=!displayGrid>
+            <ion-row>
+                <ion-col col-4 primary text-center class="headerColumn">Appeal No</ion-col>
+                <!-- <ion-col col-3 text-center class="headerColumn">Filed By</ion-col> -->
+                <ion-col text-center class="headerColumn">Filed By & Assessee Name</ion-col>
+            </ion-row>
+            <!-- <div [virtualScroll]="caseStatusList" approxItemHeight="60px" bufferRatio="10">
+                <ion-row *virtualItem="let status" class="search-result-grid" (click)="presentContactModal(status.id, status.filedBy)">
+                    <ion-col col-4 primary text-center class="clickable block"><a>{{status.appealNo}}</a></ion-col>
+                    <ion-col text-center class="block">[{{status.filedBy | slice:0:1}}] {{status.assesseName}}</ion-col>
+                </ion-row>
+            </div> -->
+            <!-- <div *ngFor="let status of caseStatusList" approxItemHeight="60px" bufferRatio="10"> -->
+                <ion-row *ngFor="let status of caseStatusList" class="search-result-grid" (click)="presentContactModal(status.id, status.filedBy)">
+                    <ion-col col-4 primary text-center class="clickable block"><a>{{status.appealNo}}</a></ion-col>
+                    <ion-col text-center class="block">[{{status.filedBy | slice:0:1}}] {{status.assesseName}}</ion-col>
+                </ion-row>
+  <!-- </div> -->
+        </ion-grid>
+    </div>
+    <!--<div [hidden]=!displayDiv>
+        <ion-card>
+            <ion-card-content>
+                <span>
+				 <ion-icon name="information-circle" class="infoIcon"></ion-icon>
+			</span>
+                <span class="errMsg">{{msg.noResult}}</span>
+            </ion-card-content>
+        </ion-card>
+    </div>-->
+    <!-- <no-record [isShow]=displayDiv [msg]="msg.noResult"></no-record> -->
+    <service-info [isShow]="displayDiv" [msg]="msg.noResult" whichIcon="information-circle" iconColor="#ffe37f">
+    </service-info>
+</ion-content>

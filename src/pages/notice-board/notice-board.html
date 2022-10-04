@@ -1,0 +1,89 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-navbar hideBackButton>
+            <ion-buttons left>
+                <button ion-button icon-only (click)="openMenu()">
+              <ion-icon name="menu"></ion-icon>
+            </button>
+            </ion-buttons>
+            <ion-title text-left>Income Tax Appellate Tribunal</ion-title>
+
+        </ion-navbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-list inset class="bg-color">
+        <ion-list-header>
+            <h2>Notice Board (Judicial)</h2>
+        </ion-list-header>
+        <!--error message-->
+        <!-- <div *ngIf="apiErr" [innerHtml]="msg.svcFailedMsg"></div> -->
+
+        <!--grid to show network error-->
+        <service-info [isShow]="apiErr" [msg]="msg.svcFailedMsg" whichIcon="alert" iconColor="red">
+        </service-info>
+        <div *ngIf="!apiErr">
+            <!--notice board-->
+            <!-- <ion-list [virtualScroll]="noticeList" bufferRatio="6" approxItemHeight="60px">
+                <div *virtualItem="let item" class="virtual-width">
+                    <ion-item (click)="itemSelected(item)" class="notice-board-list" *ngIf="item.pdf != null">
+                        <h3>{{item.heading}}</h3>
+                        <ion-icon name="download" style="color:#808080"></ion-icon><span style="color:#808080; font-size: 0.8em;">&nbsp;(PDF {{item.pdf[0].size}})</span>
+                    </ion-item>
+                </div>
+            </ion-list> -->
+            <!-- <ion-list>
+                <ion-item *ngFor="let i of noticeList">
+                    <h3>{{i.heading}}</h3>
+                </ion-item>
+            </ion-list> -->
+            <ion-list>
+                <div class="notice-item" *ngFor="let i of noticeList">
+                    <ion-item class="notice-board-list" *ngIf="i.pdf != null">
+                        <h3 (click)="viewSelected(i)" class="heading">{{i.heading}}</h3>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="pdfs">
+                                    <span style="color:#808080; font-size: 0.8em;"><ion-icon name="download" (click)="itemSelected(i)" *ngIf="i.pdf != null" style="color:#808080"></ion-icon> &nbsp;(PDF {{i.pdf[0].size}})</span>
+                                </ion-col>
+                                <ion-col class="pdfs">
+                                    <span style="color:#808080; font-size: 0.8em;" *ngIf="i.pdf[1]!= null"><ion-icon name="download" (click)="itemSelected1(i)" *ngIf="i.pdf != null" style="color:#808080"></ion-icon> &nbsp;(PDF {{i.pdf[1].size}})</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                </div>
+            </ion-list>
+            <!-- <ion-card *ngFor="let i of noticeList">
+                <ion-grid class="notice-board-list" *ngIf="i.pdf != null">
+                    <ion-row>
+                        <ion-col col-11>
+                            <h3 (click)="viewSelected(i)">{{i.heading}}</h3>
+                            <span style="color:#808080; font-size: 0.8em;">&nbsp;(PDF {{i.pdf[0].size}})</span>
+                        </ion-col>
+                        <ion-col>
+                            <ion-icon name="download" (click)="itemSelected(i)" *ngIf="i.pdf != null" style="color:#808080"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card> -->
+            <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll> -->
+
+
+        </div>
+    </ion-list>
+    <service-info [isShow]="isNoRecord" [msg]="msg.noResult" whichIcon="information-circle" iconColor="#ffe37f"></service-info>
+</ion-content>
+<!--footer-->
+<ion-footer>
+    <p class="page-note"><span class="red">Note:</span> Cause Lists in this page are published by the Benches for Notice Board purpose. Lists generated in Cause Lists page are dynamically generated at the time of request with updated information and therefore they may vary
+        from the published Cause Lists.
+    </p>
+</ion-footer>

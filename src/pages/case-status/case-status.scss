@@ -1,0 +1,54 @@
+page-case-status {
+    .scrollfix {
+        position: fixed;
+        // background-color: white;
+    }
+    .fontColor {
+        color: black !important;
+        font-size: 1.3rem !important;
+    }
+    .datetime-text:empty:not(:focus):before {
+        content: "Filed On";
+        color: gray;
+    }
+    .datetime-text {
+        -webkit-flex: none !important;
+        flex: none !important;
+    }
+    .clickable {
+        text-decoration: underline;
+    }
+    .grid {
+        padding: 0px !important;
+    }
+    .align {
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+    .scroll-content {
+        margin-top: 70px !important;
+    }
+    .label {
+        margin: 0px !important;
+        color: gray;
+    }
+    .ion-heart:before {
+        font-size: 2.2em;
+        color: red;
+    }
+    .ion-heart-outline:before {
+        font-size: 2.2em;
+    }
+    .head {
+        text-align: left;
+        margin-top: 5px;
+    }
+    .summary {
+        background: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        padding: 10px 5px 10px 10px;
+    }
+    #filedOn{
+        -webkit-appearance: none !important;
+    }
+}

@@ -1,0 +1,34 @@
+page-case-details {
+    .ion-heart:before {
+        font-size: 2.2em;
+        color: red;
+    }
+    .ion-heart-outline:before {
+        font-size: 2.2em;
+    }
+    .head {
+        text-align: left;
+        margin-top: 5px;
+    }
+    .clickable {
+        text-decoration: underline;
+        margin: 0;
+    }
+    .block1 {
+        border: 1px solid lightblue !important;
+        font-size: 1.0em !important;
+    }
+    .headerColumn {
+        font-size: 1.2em !important;
+    }
+    .flex-center-row {
+        display: flex;
+        .block1 {
+            flex: auto;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

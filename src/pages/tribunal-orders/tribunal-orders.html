@@ -1,0 +1,176 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Tribunal Orders</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding class="adjectLabel">
+    <ion-list no-lines>
+        <!-- <form #form="ngForm" [formGroup]="tribunalPageForm" (ngSubmit)="tribunalPageFormSubmit(form.value)" novalidate> -->
+        <form #form="ngForm" [formGroup]="tribunalPageForm" novalidate>
+            <!--bench-->
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-select name="bench" class="placeholder-font" formControlName="bench" [(ngModel)]="default.id"
+                                (ionChange)="tribunalAuthor(form.value)" placeholder="Bench" interface="popover">
+                                <ion-option *ngFor="let b of benchList" value="{{b.id}}">{{b.bench}}</ion-option>
+                            </ion-select>
+                            <!--appeal type-->
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-select name="appealType" class="placeholder-font" formControlName="appealType"
+                                [(ngModel)]="appealTyprDefault.id" placeholder="Appeal Type" interface="popover">
+                                <ion-option *ngFor="let a of appealType" value="{{a.id}}">{{a.appealType}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <ion-input type="text" class="placeholder-font" placeholder="Assessee Name" formControlName="assesseeName"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <!-- <ion-col col-6 class="align">
+                        <ion-item>
+                            --tribunal author--
+                            <ion-select name="authorTribunalOrder" class="placeholder-font" formControlName="authorTribunalOrder" [disabled]="enableOption(form.value.bench, form.value.appealType)" [(ngModel)]="authorDefault.id" placeholder="Select Author" interface="popover">
+                                <optgroup label="Group 1">This Bench
+                                    <ion-option *ngFor="let a of authorList" value="{{a.id}}">{{a.authorTribunalOrder}}</ion-option>
+                                </optgroup>
+                                <optgroup label="Group 2">Other Bench
+                                    <ion-option *ngFor="let a of authorList1" value="{{a.id}}">{{a.authorTribunalOrder}}</ion-option>
+                                </optgroup>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col> -->
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <!-- <ion-datetime class="datetime-text" placeholder="Date of Hearing" class="datetime-text" displayFormat="DD MMM YYYY" formControlName="hearingDate"></ion-datetime> -->
+                            <input type="text" onfocus="(this.type='date')" id="hearingDate" onblur="(this.type='text')"
+                                style="margin: 0px !important; width: 100%; padding-left: 10%;border: 1px solid #a4d7e4; padding-top: 1%; padding-bottom: 1%; font-size: 0.8em; height: 29px;-webkit-appearance: none !important;"
+                                name="Filed on" placeholder="Date of Hearing">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <!-- <ion-datetime class="datetime-text1 placeholder-font" displayFormat="DD MMM YYYY" value="today" formControlName="pronouncedOn"></ion-datetime> -->
+                            <input type="text" onfocus="(this.type='date')" id="pronouncedOn" onblur="(this.type='text')"
+                                style="margin: 0px !important; width: 100%; padding-left: 10%;border: 1px solid #a4d7e4; padding-top: 1%; padding-bottom: 1%; font-size: 0.8em; height: 29px;-webkit-appearance: none !important;"
+                                name="Filed on" placeholder="Pronounced on">
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6 class="align">
+                        <ion-item>
+                            <!-- <ion-datetime class="datetime-text2 placeholder-font" displayFormat="DD MMM YYYY" formControlName="orderDate"></ion-datetime> -->
+                            <input type="text" onfocus="(this.type='date')" id="orderDate" onblur="(this.type='text')"
+                                style="margin: 0px !important; width: 100%; padding-left: 10%;border: 1px solid #a4d7e4; padding-top: 1%; padding-bottom: 1%; font-size: 0.8em; height: 29px;-webkit-appearance: none !important;"
+                                name="Filed on" placeholder="Order Date">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <!-- <div padding>
+                <h4>Showing Result For</h4>
+                <p class="summary"><span *ngIf="obj != null">Bench: {{obj.bench}}</span><span *ngIf="appeal != null">, Appeal Type: {{appeal.appealType}}</span><span *ngIf="summary != null">, Assessee Name: {{summary.assesseeName}}</span><span *ngIf="author != null">, Author: {{author.authorTribunalOrder}}</span>
+                    <span
+                        *ngIf="author1 != null">{{author1.authorTribunalOrder}}</span>
+                        <span *ngIf="summary != null">, Date of Hearing: {{summary.hearingDate}}</span>
+                        <span *ngIf="summary != null">, Pronunced on: {{summary.pronouncedOn}}</span><span *ngIf="summary != null">, Order Date: {{summary.orderDate}}</span>
+                </p>
+            </div> -->
+
+            <!--assessee name-->
+
+
+            <!--date of hearing-->
+
+            <!--pronounced date-->
+
+            <!--order date-->
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col class="button-grp align" col-6><button ion-button class="submit-bttn-left" [disabled]="validateForm(form.value.bench)"
+                            (click)="checkConnection(form.value)">Search</button></ion-col>
+                    <ion-col class="button-grp align" col-6><button ion-button class="submit-bttn-right" (click)="resetForm(form.value.bench)">Reset</button></ion-col>
+                </ion-row>
+            </ion-grid>
+            <!-- <button ion-button class="no-border" [disabled]="validateForm(form.value.bench)" (click)="checkConnection(form.value)">Search</button> -->
+        </form>
+    </ion-list>
+    <!--grid to show network error-->
+    <!-- <div *ngIf="apiErr">
+        <ion-card>
+            <ion-card-content><span><ion-icon name="alert" class="errIcon"></ion-icon></span><span [innerHtml]="msg.svcFailedMsg" class="errMsg">Service Problem</span> </ion-card-content>
+        </ion-card>
+    </div> -->
+    <service-info [isShow]="apiErr" [msg]="msg.svcFailedMsg" whichIcon="alert" iconColor="red">
+    </service-info>
+    <!--grid to show search result-->
+    <div *ngIf="!apiErr">
+        <div padding [hidden]=!displayGrid>
+            <h4>Showing Result For</h4>
+            <p class="summary"><span *ngIf="obj != null">Bench: {{obj.bench}}</span><span *ngIf="appeal != null">,
+                    Appeal Type: {{appeal.appealType}}</span><span *ngIf="summary != null">, Assessee Name:
+                    {{summary.assesseeName}}</span><span *ngIf="author != null">, Author:
+                    {{author.authorTribunalOrder}}</span>
+                <span *ngIf="author1 != null">{{author1.authorTribunalOrder}}</span>
+                <span *ngIf="summary != null">, Date of Hearing: {{summary.hearingDate}}</span>
+                <span *ngIf="summary != null">, Pronunced on: {{summary.pronouncedOn}}</span><span *ngIf="summary != null">,
+                    Order Date: {{summary.orderDate}}</span>
+            </p>
+        </div>
+        <ion-grid [hidden]=!displayGrid>
+            <ion-row [hidden]=!displayGrid>
+                <ion-col col-4 primary class="headerColumn">Appeal No</ion-col>
+                <!-- <ion-col width-20 class="headerColumn">Filed By</ion-col> -->
+                <ion-col class="headerColumn">Filed By & Assessee Name</ion-col>
+            </ion-row>
+
+            <!-- <div [virtualScroll]="tribunalSearchList"> -->
+            <ion-row class="space-between-item" *ngFor="let status of items" (click)="loadDeatils(status.id, status.filedBy)">
+                <ion-col col-4 primary class="block clickable"><a>{{status.appealNo}}</a></ion-col>
+                <!-- <ion-col width-20>{{status.filedBy}}</ion-col> -->
+                <ion-col class="block">[{{status.filedBy | slice: 0:1}}] {{status.filedBy == "Department" ? status.respondent : status.appellant}}</ion-col>
+            </ion-row>
+            <!-- </div> -->
+            <button ion-button (click)="doInfinite()" [hidden]="!showMore">Load more</button>
+            <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+            </ion-infinite-scroll> -->
+        </ion-grid>
+    </div>
+    <!--grid to show error message-->
+    <!--<div [hidden]=!displayDiv>
+        <ion-card>
+            <ion-card-content>
+                <span>
+				 <ion-icon name="information-circle" class="infoIcon"></ion-icon>
+			</span>
+                <span class="errMsg">{{msg.noResult}}</span>
+            </ion-card-content>
+        </ion-card>
+    </div>-->
+    <!-- <no-record [isShow]=displayDiv [msg]="msg.noResult"></no-record> -->
+    <service-info [isShow]="displayDiv" [msg]="msg.noResult" whichIcon="information-circle" iconColor="#ffe37f">
+    </service-info>
+</ion-content>

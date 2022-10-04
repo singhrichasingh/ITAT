@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+        <ion-title>Tribunal Benches</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <!-- <div [innerHTML]="data"></div> -->
+    <ion-grid *ngFor="let d of data">
+        <ion-row>
+            <ion-col col-3 class="heading">Bench Name</ion-col>
+            <ion-col class="heading" *ngIf="d!=null">{{d.name}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3 class="heading">Address</ion-col>
+            <ion-col>
+                <p *ngIf="d!=null">{{d.address}}</p>
+                <p *ngIf="d!=null">{{d.bench_distric}}</p>
+                <p *ngIf="d!=null">{{d.bench_address}}</p>
+                <p *ngIf="d!=null"><span>{{d.city}} -</span><span>{{d.bench_pin_code}}, </span><span>{{d.state_name}}</span> </p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3 class="heading">Tel Phone</ion-col>
+            <ion-col *ngIf="d!=null">{{d.tel}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3 class="heading">Fax Nos.</ion-col>
+            <ion-col *ngIf="d!=null">{{d.fax}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3 class="heading">E-Mail ID</ion-col>
+            <ion-col *ngIf="d!=null">{{d.bench_email}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3 class="heading">Jurisdiction</ion-col>
+            <ion-col class="heading">State</ion-col>
+            <ion-col class="heading">Districts</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3></ion-col>
+            <ion-col *ngIf="d!=null">{{d.state_name}}</ion-col>
+            <ion-col *ngIf="d!=null">{{d.bench_distric}}</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,31 @@
+page-bookmarked-cases {
+    .bmarkButton {
+        background-color: #E7F4FC !important;
+    }
+    .head {
+        text-align: left;
+        margin-top: 5px;
+    }
+    .ion-trash:before {
+        font-size: 2.2em;
+        color: #2F86F2;
+    }
+    .toolbar-title {
+        font-size: 1.4em;
+    }
+    .block {
+        background-color: #ffffff !important;
+        margin: 1px !important;
+        text-align: center !important;
+        padding: 2px !important;
+        font-size: 11.2px !important;
+        margin: 3px 0 !important;
+        .col {
+            font-size: 11.2px !important;
+        }
+    }
+    
+    a{
+        text-decoration: underline !important;
+    }
+}

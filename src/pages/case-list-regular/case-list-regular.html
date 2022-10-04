@@ -1,0 +1,94 @@
+<!--
+  Generated template for the CaseListRegular page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Cause List (Regular)</ion-title>
+    </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <ion-list no-lines>
+        <form #form="ngForm" [formGroup]="casePageForm" (ngSubmit)="caseListSubmit(form.value)" novalidate>
+            <!--bench-->
+            <ion-item class="bgColor">
+                <ion-label class="fontColor">Branch(City)
+                    <mandatory-marker></mandatory-marker>
+                </ion-label>
+                <ion-select name="bench" formControlName="bench" class="placeholder-font" [(ngModel)]="default.id" (ionChange)="hearingBenchList(form.value)" placeholder="Select Bench" interface="popover">
+                    <ion-option *ngFor="let b of benchList" value="{{b.id}}">{{b.bench}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <!--hearing bench-->
+            <ion-item class="bgColorNext">
+                <ion-label class="fontColor">Hearing Bench
+                    <mandatory-marker></mandatory-marker>
+                </ion-label>
+                <ion-select name="hearingBench" formControlName="hearingBench" class="placeholder-font" [disabled]="enableOption(form.value.bench)" [(ngModel)]="defaultBench.id" placeholder="Select Hearing Bench" interface="popover">
+                    <ion-option *ngFor="let b of benchInfo" value="{{b.id}}">{{b.hearingBench}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <!--date of hearing-->
+            <ion-item class="bgColor3">
+                <ion-label class="fontColor">Date of Hearing 
+                    <mandatory-marker></mandatory-marker>
+                </ion-label>
+                <ion-datetime  class="datetime-text placeholder-font" displayFormat="DD MMM YYYY"   min="{{ today | date:'yyyy-MM-dd' }}" formControlName="hearingDate"></ion-datetime>
+            </ion-item>
+
+            <!-- <button ion-button class="no-border" [disabled]="validateForm(form.value)" (click)="checkConnection(form.value)">Search</button> -->
+         <ion-grid>
+                <ion-row>
+                    <ion-col class="button-grp" col-6><button ion-button class="submit-bttn-left" [disabled]="validateForm(form.value)" (click)="checkConnection(form.value)">Search</button></ion-col>
+                    <ion-col class="button-grp" col-6><button  ion-button class="submit-bttn-right" (click)="resetForm(form.value)"  [disabled] = "casePageForm.pristine">Reset</button></ion-col>
+                </ion-row>
+             </ion-grid>  
+        </form>
+    </ion-list>
+    <!--grid to show network error-->
+    <!-- <div *ngIf="apiErr">
+        <ion-card>
+            <ion-card-content><span><ion-icon name="alert" class="errIcon"></ion-icon></span><span [innerHtml]="msg.svcFailedMsg" class="errMsg">Service Problem</span> </ion-card-content>
+        </ion-card>
+    </div> -->
+    <service-info [isShow]="apiErr" [msg]="msg.svcFailedMsg" whichIcon="alert" iconColor="red">
+        </service-info>
+    <!--grid to show search result-->
+    <div *ngIf="!apiErr">
+        <ion-grid [hidden]=!displayGrid>
+            <ion-row>
+                <ion-col width-10 primary class="headerColumn">Srl</ion-col>
+                <ion-col width-50 class="headerColumn">Appeal Number</ion-col>
+                <ion-col class="headerColumn">Assessee Name</ion-col>
+            </ion-row>
+            <div [virtualScroll]="caseRegularList">
+                <ion-row *virtualItem="let status; let i = index">
+                    <ion-col width-10 primary>{{i+1}}</ion-col>
+                    <ion-col width-50>{{status.appealNo}}</ion-col>
+                    <ion-col>{{status.assesseeName}}</ion-col>
+                </ion-row>
+            </div>
+        </ion-grid>
+    </div>
+    <!--grid to show error message-->
+    <!--<div [hidden]=!displayDiv>
+        <ion-card>
+            <ion-card-content>
+                <span>
+				 <ion-icon name="information-circle" class="infoIcon"></ion-icon>
+			</span>
+                <span class="errMsg">{{msg.noResult}}</span>
+            </ion-card-content>
+        </ion-card>
+    </div>-->
+<!-- <no-record [isShow]=displayDiv [msg]="msg.noResult"></no-record> -->
+<service-info [isShow]="displayDiv" [msg]="msg.noResult" whichIcon="information-circle" iconColor="#ffe37f">
+        </service-info>
+</ion-content>

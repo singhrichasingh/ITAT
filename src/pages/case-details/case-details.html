@@ -1,0 +1,89 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col class="head">
+                    <ion-title style="font-size: 1.4em !important;">Case Details</ion-title>
+                </ion-col>
+                <ion-col>
+                    <!-- <span (click)="bookmarkCase(this)" text-capitalize pull-right><ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon>{{btnText}}</span> -->
+                    <!-- <button ion-button (click)="bookmarkCase(this)" text-capitalize pull-right>{{btnText}}</button> -->
+                    <ion-icon ios="ios-heart" md="md-heart" [hidden]="!saved" (click)="bookmarkCase(this)"></ion-icon>
+                    <ion-icon ios="ios-heart-outline" md="md-heart-outline" [hidden]="saved" (click)="bookmarkCase(this)"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="headerColumn">Appeal No</ion-col>
+            <ion-col class="headerColumn">Filed On</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].appealNo}}</ion-col>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].filedOn}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="headerColumn">Assessment Year</ion-col>
+            <ion-col class="headerColumn">Bench Alloted</ion-col>
+            <ion-col class="headerColumn">Case Status</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].assessementYear}}</ion-col>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].benchAlloted}}</ion-col>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].caseStatus}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="headerColumn">Appellant</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].appellant}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="headerColumn">Respondant</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="data != null" class="block1">{{data.data[0].respondant}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Date of First Hearing</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].hearingDate}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Date of Last Hearing</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].lastHearing}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Date of Next Hearing</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].nextHearing}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Date of Final Hearing</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].finalHearing}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Date of Tribunal Order</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].tribunalOrderDate}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Date of Pronouncement</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].pronouncementDate}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8 text-left class="block1">Order Result</ion-col>
+            <ion-col col-4 text-left *ngIf="data != null" class="block1">{{data.data[0].orderResult}}</ion-col>
+        </ion-row>
+        <ion-row class="flex-center-row">
+            <ion-col col-8 text-left class="block1">Tribunal Order</ion-col>
+            <ion-col col-4 text-wrap text-left (click)=openLink(data.data[0].tribunalOrder) *ngIf="data != null" class="block1">
+                <p class="clickable p-padding" [hidden]=!flag><a>Click Here</a></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

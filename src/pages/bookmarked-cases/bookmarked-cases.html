@@ -1,0 +1,69 @@
+<!--
+  Generated template for the TribunalOrders page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <!-- <ion-title>Bookmark Cases</ion-title> -->
+        <ion-grid>
+            <ion-row>
+                <ion-col class="head">
+                    <ion-title>Bookmarked Cases</ion-title>
+                </ion-col>
+                <ion-col [hidden]="isGridHide">
+                    <!-- <span (click)="bookmarkCase(this)" text-capitalize pull-right><ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon>{{btnText}}</span> -->
+                    <!-- <button ion-button (click)="bookmarkCase(this)" text-capitalize pull-right>{{btnText}}</button> -->
+                    <!-- <ion-icon ios="ios-trash" md="md-trash" (click)="deleteRow()"></ion-icon> -->
+                    <img src="assets/img/unbmark.png" width="40" height="30" (click)="deleteRow()" />
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <!--bookmark table-->
+    <ion-grid [hidden]="isGridHide">
+        <ion-row>
+            <ion-col col-1 class="headerColumn" (click)="cbAll(status)">
+                <ion-icon name="md-bookmark"></ion-icon>
+            </ion-col>
+            <ion-col col-4 class="headerColumn">Appeal Number</ion-col>
+            <ion-col class="headerColumn">Filed By & Assessee Name</ion-col>
+        </ion-row>
+        <ion-row class="flex-center-row" *ngFor="let status of bookmarkData; trackBy:trackByFn" class="block">
+            <ion-col col-1>
+                <ion-checkbox #cb color="dark" checked="false" [(ngModel)]="status.isChecked" change="checkbox(status)"></ion-checkbox>
+            </ion-col>
+            <ion-col col-4 (click)="openBookmark(status.id) "><a>{{status.appealNumber}}</a></ion-col>
+            <ion-col (click)="openBookmark(status.id) ">[{{status.filledBy | slice: 0:1}}] {{status.name}}</ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card [hidden]="!isGridHide">
+
+        <ion-card-header>
+            <h2>No Bookmarks</h2>
+        </ion-card-header>
+
+        <ion-card-content>
+            <span>  Go to <button ion-button small (click)="naviToCaseStatus()" style="vertical-align: middle;">Case Status</button> section to bookmark cases.</span>
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>
+<!-- <ion-footer>
+    <ion-grid [hidden]="isGridHide">
+        <ion-row>
+            <ion-col width-50 class="bmarkButton"></ion-col>
+            <ion-col class="bmarkButton "><button ion-button small (click)="deleteRow()">Unfavourite Case</button></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer> -->

@@ -1,0 +1,23 @@
+page-case-list-regular {
+
+.fontColor{
+    color: black  !important;
+    font-size: 1.3rem !important;
+}
+ .button{
+      background-color : #3A9EFC;
+ }
+
+.bar-button-menutoggle .button-inner{
+border : none;
+}
+.datetime-text:empty:not(:focus):before{
+    content: "Date of Hearing";
+    color : gray;
+}
+.datetime-text{
+-webkit-flex: none !important;
+    flex : none !important;
+}
+}
+

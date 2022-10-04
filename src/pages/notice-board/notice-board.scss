@@ -1,0 +1,92 @@
+page-notice-board {
+    .toolbar-background {
+        background-image: repeating-linear-gradient(to bottom, rgb(164, 216, 243) 0%, rgb(185, 221, 241) 37.2%, rgb(237, 247, 253) 100%);
+    }
+    ion-content {
+        background-image: repeating-linear-gradient(to bottom, rgb(237, 247, 253) 0%, rgb(221, 239, 250) 39.7%, rgb(221, 239, 250) 99.1%);
+    }
+    .item:first-child {
+        background-color: #E6F3FC;
+        color: black;
+    }
+    .item {
+        padding-left: 0px !important;
+        margin-bottom: 0 !important;
+        border: 5px solid #E6F3FC;
+    }
+    ion-item {
+        background-color: #0b94ef !important;
+    }
+    .label {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .page-note {
+        text-align: justify;
+        margin-left: 2%;
+        margin-right: 2%;
+        font-size: 80%;
+    }
+    .doc-info {
+        color: grey;
+        padding-top: 2%;
+        font-size: 90% !important;
+    }
+    a {
+        margin-right: 2% !important;
+    }
+    .ion-download {
+        font-size: 1em !important;
+    }
+    .ion-download:before {
+        margin-top: 2% !important;
+    }
+    .notice-board-list ion-label {
+        color: #123882 !important;
+    }
+    .notice-board-list {
+        font-size: 95% !important;
+    }
+    ion-item .item-inner {
+        background-color: white !important;
+    }
+    .red {
+        color: red;
+    }
+    .virtual-width {
+        width: 100% !important;
+    }
+    .content {
+        background-color: transparent !important;
+    }
+    h3 {
+        white-space: initial !important;
+    }
+    .label {
+        margin: 0px 0px 0px 0px !important;
+    }
+    .label {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    .input-wrapper {
+        padding-left: 0px !important;
+    }
+    .heading {
+        text-align: left;
+        padding: 10px;
+    }
+    .download {
+        text-align: center;
+        margin: auto;
+    }
+    .ion-download:before {
+        font-size: 2.6em !important;
+    }
+    .pdfs {
+        text-align: left;
+    }
+    .notice-item {
+        margin: 5px 0px;
+    }
+}
